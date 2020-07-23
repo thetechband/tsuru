@@ -98,11 +98,13 @@ func rollbackAddedProcesses(args *pipelineArgs, processes map[string]*labelRepli
 			errors.Add(fmt.Errorf("error rolling back updated service for %s[%s] [version %d]: %+v", args.app.GetName(), processName, args.oldVersion.Version(), err))
 		}
 	}
-	if hasOldVersion {
-		if err := args.manager.CleanupServices(args.app, args.oldVersion, args.preserveVersions); err != nil {
-			errors.Add(fmt.Errorf("error cleaning up services after rollback: %+v", err))
+	/*
+		if hasOldVersion {
+			if err := args.manager.CleanupServices(args.app, args.oldVersion, args.preserveVersions); err != nil {
+				errors.Add(fmt.Errorf("error cleaning up services after rollback: %+v", err))
+			}
 		}
-	}
+	*/
 	return errors.ToError()
 }
 
